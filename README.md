@@ -41,3 +41,8 @@ Example for using with-in a express application:
       }));
     });
 
+
+#ROADMAP
+
+- plugin architecture for adding more file processors.
+- application manifest generation (with automatic revision generation).
