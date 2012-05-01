@@ -13,6 +13,10 @@ This project is based on connect middleware but with several improvements and ad
 
 Since files are cached and always fresh, gzip, less and minification does not have any impact on the server performance.
 
+Install:
+
+    npm install cabinet
+
 Example for using with-in a express application:
 
     var cabinet = require('cabinet');
