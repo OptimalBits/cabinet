@@ -8,6 +8,7 @@
     "node": ">=0.6.10"
   },
   "dependencies": {
+	"underscore" : "*",
 	"range-parser" : "*",
     "less": ">=1.2.0",
 	"mime": ">= 0.0.1",
