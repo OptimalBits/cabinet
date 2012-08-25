@@ -2,15 +2,26 @@
   "author": "Manuel Astudillo <manuel@optimalbits.com> (http://optimalbits.com)",
   "name": "cabinet",
   "description": "A blazing fast static file server loaded with useful features",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
   },
   "dependencies": {
+	"range-parser" : "*",
     "less": ">=1.2.0",
 	"mime": ">= 0.0.1",
     "uglify-js": ">=1.2.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+	  "mocha": "*",
+      "should": "*",
+	  "expect.js": "*",
+      "supertest": "0.0.1",
+	  "send": "*",
+      "connect": "2.x"
+  },
+  "scripts" : {
+	  "test" : "mocha --reporter spec --bail"
+  }
 }
