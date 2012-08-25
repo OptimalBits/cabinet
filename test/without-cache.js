@@ -15,7 +15,7 @@ app.use(function(req, res){
   res.end('Not Found');
 });
 
-describe('File Cabinet No Cache', function(){
+describe('File Cabinet Without Cache', function(){
   it('should serve static files', function(done){
     request(app)
     .get('/todo.txt')
@@ -107,11 +107,11 @@ describe('File Cabinet No Cache', function(){
   
   it('should 301 if the directory exists', function(done){
       request(app)
-      .get('/pets')
-      .expect(301)
-      .expect('Location', '/pets/')
-      .expect('Redirecting to /pets/')
-      .end(done);
+        .get('/pets')
+        .expect(301)
+        .expect('Location', '/pets/')
+        .expect('Redirecting to /pets/')
+        .end(done);
   })
 
   it('should set Content-Type via mime map', function(done){
