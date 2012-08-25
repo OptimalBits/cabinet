@@ -8,7 +8,7 @@ var cabinet = require('..'),
 
 var app = connect();
 
-app.use(cabinet.static(__dirname + '/fixtures'));
+app.use(cabinet(__dirname + '/fixtures'));
 
 app.use(function(req, res){
   res.statusCode = 404;
