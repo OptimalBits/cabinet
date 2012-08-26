@@ -12,7 +12,10 @@ app.use(cabinet(__dirname + '/fixtures', {
   cache:{
     maxSize: 1024, 
     maxObjects:256
-  }
+  },
+  coffee:true
+  //minjs:true,
+  //gzip:true
 }));
 
 app.use(function(req, res){
@@ -32,6 +35,15 @@ describe('File Cabinet With Cache', function(){
       .get('/name.txt')
       .expect('Content-Length', '4')
       .expect('tobi', done);
+  });
+  
+  it('should compile coffee files', function(done){
+    request(app)
+      .get('/arrays.coffee')
+      .expect('Content-Length', '2128')
+      .end(function(err,res){
+        done();
+      })
   });
 
   it('should decode the given path as a URI', function(done){
