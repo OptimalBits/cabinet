@@ -33,28 +33,39 @@ Example for using within an express application:
     app.configure('development', function(){
       app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
       app.use(cabinet(__dirname + '/static', {
+		// Set LESS CSS options
         less:{
           // Specify search paths for @import directives
           paths: ['.',__dirname + '/static/stylesheets'], 
         },
+		// Activates in-memory cache
+	    cache:{ 
+	      maxSize: 1024, 
+	      maxObjects:256
+	    }
       }));
     });
 
     app.configure('production', function(){
       app.use(express.errorHandler());
       app.use(cabinet(__dirname + '/static', {
+		// Minimize javascript files.
+		minjs: true, 
         less:{
           paths: ['.',__dirname + '/static/stylesheets'],
         },
-        minjs:true // Minimize javascript files.
+		// Activates in-memory cache
+	    cache:{
+	      maxSize: 1024, 
+	      maxObjects:256
+	    }
       }));
     });
 
 ##ROADMAP
 
-- plugin architecture for adding more file processors.
+- plugin architecture for adding more file processors (coffescript, etc)
 - HTML5 application cache manifest generation (with automatic revision generation).
-
 
 ##License 
 
