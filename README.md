@@ -9,12 +9,12 @@ and aditions:
 
 - Built-in in-memory cache mechanism for very fast file serve.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
+- Automatic coffee script compilation.
+- Automatic compilation of less css files.
+- Automatic javascript uglification & minification (using uglifyJS)
 - On the fly gzip of text files (js, css, html, templates, etc).
-- On the fly less compilation of css files.
-- On the fly javascript uglification & minification (using uglifyJS)
 
-Since files are cached and always fresh, gzip, less and minification do not have any impact 
-on the server performance.
+Since files are cached and always fresh, compiled coffee script, gzip, less and minification do not have any impact on the server performance.
 
 [![BuildStatus](https://secure.travis-ci.org/OptimalBits/cabinet.png?branch=master)](http://travis-ci.org/optimalbits/cabinet)
 
@@ -33,12 +33,14 @@ Example for using within an express application:
     app.configure('development', function(){
       app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
       app.use(cabinet(__dirname + '/static', {
-		// Set LESS CSS options
+        coffee:true,
+        gzip:true,
+        // Set LESS CSS options
         less:{
           // Specify search paths for @import directives
           paths: ['.',__dirname + '/static/stylesheets'], 
         },
-		// Activates in-memory cache
+		  // Activates in-memory cache
 	    cache:{ 
 	      maxSize: 1024, 
 	      maxObjects:256
@@ -49,8 +51,10 @@ Example for using within an express application:
     app.configure('production', function(){
       app.use(express.errorHandler());
       app.use(cabinet(__dirname + '/static', {
-		// Minimize javascript files.
-		minjs: true, 
+        coffee:true,
+        gzip:true,
+		    // Minimize javascript files.
+		    minjs: true, 
         less:{
           paths: ['.',__dirname + '/static/stylesheets'],
         },
@@ -64,7 +68,7 @@ Example for using within an express application:
 
 ##ROADMAP
 
-- plugin architecture for adding more file processors (coffescript, etc)
+- Deflate compression filter.
 - HTML5 application cache manifest generation (with automatic revision generation).
 
 ##License 
