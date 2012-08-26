@@ -5,7 +5,7 @@ A fast static file server loaded with useful features.
 Works as a drop-in replacement for connect's static module (also works on express).
 
 The code is mostly based on the original work by TJ Holowaychuck, but with several improvements
-and aditions:
+and additions:
 
 - Built-in in-memory cache mechanism for very fast file serve.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
