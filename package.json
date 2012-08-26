@@ -1,26 +1,29 @@
 {
   "author": "Manuel Astudillo <manuel@optimalbits.com> (http://optimalbits.com)",
   "name": "cabinet",
-  "description": "A blazing fast static file server loaded with useful features",
-  "version": "0.0.5",
+  "description": "A fast static file server loaded with useful features",
+  "version": "0.0.6",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
   },
   "dependencies": {
-	"underscore" : "*",
-	"range-parser" : "*",
+	  "underscore" : "*",
+	  "range-parser" : "*",
     "less": ">=1.2.0",
-	"mime": ">= 0.0.1",
-    "uglify-js": ">=1.2.6"
+	  "mime": ">= 0.0.1",
+    "uglify-js": ">=1.2.6",
+    "coffee-script": "*"
   },
   "devDependencies": {
-	  "mocha": "*",
-      "should": "*",
-	  "expect.js": "*",
-      "supertest": "0.0.1",
-	  "send": "*",
-      "connect": "2.x"
+    "mocha": "*",
+    "should": "*",
+    "expect.js": "*",
+    "supertest": "0.0.1",
+    "send": "*",
+    "connect": "2.x",
+	  "node-static":"*",
+	  "lightnode":"*"
   },
   "scripts" : {
 	  "test" : "mocha --reporter spec --bail"
