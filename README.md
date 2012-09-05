@@ -66,7 +66,7 @@ Example for using within an express application:
       }));
     });
 
-##ROADMAP
+##Roadmap
 
 - Deflate compression filter.
 - HTML5 application cache manifest generation (with automatic revision generation).
