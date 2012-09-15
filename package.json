@@ -9,6 +9,7 @@
   },
   "dependencies": {
 	  "underscore" : "*",
+    "async" : "*",
 	  "range-parser" : "*",
     "less": ">=1.2.0",
 	  "mime": ">= 0.0.1",
