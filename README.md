@@ -1,11 +1,11 @@
-#Cabinet
+Cabinet[![BuildStatus](https://secure.travis-ci.org/OptimalBits/cabinet.png?branch=master)](http://travis-ci.org/optimalbits/cabinet)
+=
 
 A fast static file server loaded with useful features.
 
 Works as a drop-in replacement for connect's static module (also works on express).
 
-The code is mostly based on the original work by TJ Holowaychuck, but with several improvements
-and additions:
+The code is mostly based on the original work by TJ Holowaychuck, but with several improvements and additions:
 
 - Built-in in-memory cache mechanism for very fast file serve.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
@@ -13,10 +13,11 @@ and additions:
 - Automatic compilation of less css files.
 - Automatic javascript uglification & minification (using uglifyJS)
 - On the fly gzip of text files (js, css, html, templates, etc).
+- Support for virtual files, for example HTML5 application cache manifest.
 
 Since files are cached and always fresh, compiled coffee script, gzip, less and minification do not have any impact on the server performance.
 
-[![BuildStatus](https://secure.travis-ci.org/OptimalBits/cabinet.png?branch=master)](http://travis-ci.org/optimalbits/cabinet)
+Follow [optimalbits](http://twitter.com/optimalbits) for news and updates regarding this library.
 
 Install:
 
@@ -25,7 +26,7 @@ Install:
 Tests:
 
     npm test
-
+    
 Example for using within an express application:
 
     var cabinet = require('cabinet');
@@ -58,18 +59,101 @@ Example for using within an express application:
         less:{
           paths: ['.',__dirname + '/static/stylesheets'],
         },
-		// Activates in-memory cache
-	    cache:{
-	      maxSize: 1024, 
-	      maxObjects:256
-	    }
+		    // Activates in-memory cache
+	      cache:{
+	        maxSize: 1024, 
+	        maxObjects:256
+	      }
       }));
     });
+
+
+###Virtuals    
+
+It is possible to define virtual files in cabinet. A virtual file is the result of some processing. For example, an application manifest file is a virtual file that is generated
+on the fly with the given files and with an always and up-to-date timestamp (the timestamp is re-generated when any of the files in the manifest changes). 
+Virtual files are also cached as normal files and therefore they are served very fast. 
+
+Example of a file server for serving an application cache manifest:
+
+    app.use(cabinet(__dirname + '/static', 
+    {
+      gzip:true,
+      minjs:true,
+      cache:{
+        maxSize: 1024, 
+        maxObjects:256
+      }
+    },
+    {
+      '/player.appcache':cabinet.virtuals.manifest(['foo.txt', 'bar.txt'], ['*'], ['/ /fallback'])
+    }));
+    
+Accessing  */player.appcache* will generate the following manifest:
+
+    CACHE MANIFEST
+    #465398.1347735807000
+    CACHE:
+    foo.txt
+    bar.txt
+    NETWORK:
+    *
+    FALLBACK:
+    / /fallback    
+    
+The timestamp (#465398.1347735807000) will be automatically updated if foo.txt or bar.txt changes,
+so that the browser will invalidate its application cache when needed.
+
+A virtual is just an asynchronous function without parameters with the following callback signature:
+
+    function(err, data, files)
+
+__Arguments__
+
+    err   {Error} Some error object describing an error. 
+    data  {String|Buffer} The data that is going to be served when the virtual file is accessed.
+    files {Array} Array of files to listen for changes. This is used when enabling the cache. If any
+    of the files changes, the cache will invalidate the entry containing the virtual.
+    
+Example of a (very) dummy virtual:
+
+    function dummy(name){
+      return function(cb){
+        cb(null, 'My name is '+name, []);
+      }
+    }
+
+
+## Reference
+
+    cabinet(root, [options, virtuals])
+
+__Arguments__
+ 
+    root     {String} Path to the root directory for the served files.
+    options  {Object} options object (see options)
+    virtuals {Object} Object mapping paths to virtuals.
+    
+    
+##Options
+
+Most options are directly inherited from *connect's* options. Besides those we have the options related
+to the provided filters:
+
+- `cache`    Enables caching. Accepts an object with the parameters:  maxSize (per object in bytes) and maxObjects.
+- `maxAge`   Browser cache maxAge in milliseconds. defaults to 0
+- `hidden`   Allow transfer of hidden files. defaults to false
+- `redirect` Redirect to trailing "/" when the pathname is a dir
+- `gzip`     Enables gzip compression if the browser supports it (only affect ascii files).
+- `minjs`    Enables UglifyJS javascript minification.
+- `less`     Enables LESS CSS compilation. Accepts an object with options to the less compilation, as for example *paths*, which specifies paths where to find included files.
+- `coffee`   Enables coffee script compilation of .coffee files.
+
 
 ##Roadmap
 
 - Deflate compression filter.
-- HTML5 application cache manifest generation (with automatic revision generation).
+
 
 ##License 
 
