@@ -86,10 +86,10 @@ Example of a file server for serving an application cache manifest:
       }
     },
     {
-      '/player.appcache':cabinet.virtuals.manifest(['foo.txt', 'bar.txt'], ['*'], ['/ /fallback'])
+      '/example.appcache':cabinet.virtuals.manifest(['foo.txt', 'bar.txt'], ['*'], ['/ /fallback'])
     }));
     
-Accessing  */player.appcache* will generate the following manifest:
+Accessing  */example.appcache* will generate the following manifest:
 
     CACHE MANIFEST
     #465398.1347735807000
