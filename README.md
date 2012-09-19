@@ -1,4 +1,4 @@
-Cabinet[![BuildStatus](https://secure.travis-ci.org/OptimalBits/cabinet.png?branch=master)](http://travis-ci.org/optimalbits/cabinet)
+Cabinet  [![BuildStatus](https://secure.travis-ci.org/OptimalBits/cabinet.png?branch=master)](http://travis-ci.org/optimalbits/cabinet)
 =
 
 A fast static file server loaded with useful features.
