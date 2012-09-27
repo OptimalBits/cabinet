@@ -24,7 +24,7 @@ app.use(function(req, res){
   res.end('Not Found');
 });
 
-describe('File Cabinet With Cache', function(){
+describe('File Cabinet With Cache Virtuals', function(){
   it('should serve application manifest', function(done){
     request(app)
     .get('/foobar.appcache')
