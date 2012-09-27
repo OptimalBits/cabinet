@@ -13,7 +13,10 @@ app.use(cabinet(__dirname + '/fixtures', {
     maxSize: 1024, 
     maxObjects:256
   },
-  coffee:true
+  coffee:true,
+  stylus:{
+    paths:[]
+  }
   //minjs:true,
   //gzip:true
 }));
@@ -44,6 +47,12 @@ describe('File Cabinet With Cache', function(){
       .end(function(err,res){
         done();
       })
+  });
+  
+  it('should render stylus files', function(done){
+    request(app)
+      .get('/stylus/round-borders.styl')
+      .expect('body {\n  font: 12px Helvetica, Arial, sans-serif;\n}\na.button {\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  border-radius: 5px;\n}\n', done);
   });
 
   it('should decode the given path as a URI', function(done){

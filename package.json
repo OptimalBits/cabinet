@@ -14,7 +14,8 @@
     "less": ">=1.2.0",
 	  "mime": ">= 0.0.1",
     "uglify-js": ">=1.2.6",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "stylus": "*"
   },
   "devDependencies": {
     "mocha": "*",
