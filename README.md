@@ -43,7 +43,7 @@ Example for using within an express application:
         },
 		  // Activates in-memory cache
 	    cache:{ 
-	      maxSize: 1024, 
+	      maxSize: 16384, // 16Kb pero object 
 	      maxObjects:256
 	    }
       }));
@@ -61,7 +61,7 @@ Example for using within an express application:
         },
 		    // Activates in-memory cache
 	      cache:{
-	        maxSize: 1024, 
+	        maxSize: 16384, // 16Kb per object
 	        maxObjects:256
 	      }
       }));
