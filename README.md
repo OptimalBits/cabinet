@@ -10,7 +10,7 @@ The code is mostly based on the original work by TJ Holowaychuck, but with sever
 - Built-in in-memory cache mechanism for very fast file serve.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
 - Automatic coffee script compilation.
-- Automatic compilation of less css files.
+- Automatic compilation of less css and stylus files.
 - Automatic javascript uglification & minification (using uglifyJS)
 - On the fly gzip of text files (js, css, html, templates, etc).
 - Support for virtual files, for example HTML5 application cache manifest.
