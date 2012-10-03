@@ -30,7 +30,7 @@ describe('File Cabinet With Cache and Gzip Enabled', function(){
   
   it('should serve a coffe script as a zipped file', function(done){
     request(app)
-      .get('/array.coffee')
+      .get('/arrays.coffee')
       .set('accept-encoding', 'gzip')
       .expect('Content-Encoding', 'gzip')
       .expect('Content-Length', '721', done)
