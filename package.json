@@ -21,7 +21,7 @@
     "mocha": "*",
     "should": "*",
     "expect.js": "*",
-    "supertest": "0.0.1",
+    "supertest": "*",
     "send": "*",
     "connect": "2.x",
 	  "node-static":"*",
