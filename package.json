@@ -2,7 +2,7 @@
   "author": "Manuel Astudillo <manuel@optimalbits.com> (http://optimalbits.com)",
   "name": "cabinet",
   "description": "A fast static file server loaded with useful features",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
