@@ -30,7 +30,7 @@ try{
 try{
   fs.rmdirSync(bDir);
 }catch(e){};
-  
+
   watcher = new Watcher(root);
   watcher.on('initialized', function(){
     done();
@@ -38,6 +38,7 @@ try{
 })
 
 describe('Watch a directory', function(){
+  
   it('A created file should be notified', function(done){  
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
@@ -116,36 +117,34 @@ describe('Watch a directory', function(){
     fs.writeSync(fd, new Buffer('123456789'), 0, 9, 3); 
   });
   
-  it('Modifying dependencies triggers also the dependent files', function(done){
-    watcher.setDependencies(bFile, [cFile]);
-    
+  it('Modifying dependencies triggers also the dependent files', function(done){ 
     var cb = function(filename){
       expect(filename).to.be.equal(cFile);
       watcher.removeListener('added', cb);
       watcher.on('changed', cb2);
       
+      watcher.setDependencies(bFile, [cFile]);
+            
       var fd = fs.openSync(cFile, 'a');
       fs.writeSync(fd, new Buffer('123456789'), 0, 9, 3);
     };
     
     var cNotified = false;
     var bNotified = false;
-    var calledDone = false;
     
     var cb2 = function(filename){
       if(cFile == filename){
-    //    expect(cNotified).to.not.be.ok();
+        expect(cNotified).to.not.be.ok();
         cNotified = true;
       }
       if(bFile == filename){
-  //      expect(bNotified).to.not.be.ok();
+        expect(bNotified).to.not.be.ok();
         bNotified = true;
       }
       
-      if(bNotified && cNotified && !calledDone){
+      if(bNotified && cNotified){
         watcher.removeListener('changed', cb);
         done();
-        calledDone = true;
       }
     };
     
