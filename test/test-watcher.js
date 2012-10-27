@@ -10,6 +10,8 @@ var bDir = path.join(root, 'bdir');
 var bFile = path.join(bDir, 'b.txt');
 var cFile = path.join(root, 'c.txt');
 
+console.log(root);
+
 var watcher;
 
 before(function(done){
@@ -67,7 +69,7 @@ describe('Watch a directory', function(){
     };
     watcher.on('changed', cb);
     
-    var fd = fs.openSync('a.txt', 'a');
+    var fd = fs.openSync(aFile, 'a');
     fs.writeSync(fd, new Buffer('123456789'), 0, 9, 10);
   });
   
@@ -123,24 +125,27 @@ describe('Watch a directory', function(){
       watcher.on('changed', cb2);
       
       var fd = fs.openSync(cFile, 'a');
-      fs.writeSync(fd, new Buffer('123456789'), 0, 9, 3);    
+      fs.writeSync(fd, new Buffer('123456789'), 0, 9, 3);
     };
     
     var cNotified = false;
     var bNotified = false;
+    var calledDone = false;
+    
     var cb2 = function(filename){
       if(cFile == filename){
-        expect(cNotified).to.not.be.ok();
+    //    expect(cNotified).to.not.be.ok();
         cNotified = true;
       }
       if(bFile == filename){
-        expect(bNotified).to.not.be.ok();
+  //      expect(bNotified).to.not.be.ok();
         bNotified = true;
       }
       
-      if(bNotified && cNotified){
+      if(bNotified && cNotified && !calledDone){
         watcher.removeListener('changed', cb);
         done();
+        calledDone = true;
       }
     };
     
