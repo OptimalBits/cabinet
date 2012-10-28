@@ -126,6 +126,18 @@ Example of a (very) dummy virtual:
     }
 
 
+## Directory Watcher
+Cabinet includes a directory watcher that is used to keep the cache always fresh as well as to compute new ETAG values for files and virtual files based on their dependencies. So files depending on other files will automatically get new ETAGS based on all their dependencies.
+
+In some platforms such as Mac OSX, there is a known error due to limits in the amount of allowed open files: 
+
+      Error: watch EMFILE
+
+To avoid this error use ulimit, for example to allow 4096 open files:
+
+    ulimit -n 4096
+
+
 ## Reference
 
     cabinet(root, [options, virtuals])
