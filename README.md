@@ -36,6 +36,7 @@ Example for using within an express application:
     app.configure('development', function(){
       app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
       app.use(cabinet(__dirname + '/static', {
+        ignore: ['.git', '*.txt', 'node_modules'],
         coffee:true,
         gzip:true,
         // Set LESS CSS options
@@ -54,6 +55,7 @@ Example for using within an express application:
     app.configure('production', function(){
       app.use(express.errorHandler());
       app.use(cabinet(__dirname + '/static', {
+        ignore: ['.git', '*.txt', 'node_modules'],
         coffee:true,
         gzip:true,
 		    // Minimize javascript files.
