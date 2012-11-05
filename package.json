@@ -18,6 +18,7 @@
     "stylus": "*",
     "typescript": "*",
     "node-uuid":"*",
+    "minimatch":"*",
     "requirejs":"2.1.1",
     "winston":">=0.6.2"
   },
