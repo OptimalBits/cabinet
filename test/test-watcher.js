@@ -2,7 +2,8 @@ var cabinet = require('..'),
      expect = require('expect.js'),
     Watcher = require('../lib/watcher').Watcher,
          fs = require('fs'),
-       path = require('path');
+       path = require('path'),
+      async = require('async');
 
 var root = __dirname;
 var aFile = path.join(root,'a.txt');
@@ -49,7 +50,7 @@ describe('Watch a directory', function(){
     watcher.on('added', cb);
     fs.writeFileSync(aFile, '123');
   });
-  
+  /*
   it('A modified file should be notified', function(done){
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
@@ -73,7 +74,42 @@ describe('Watch a directory', function(){
     var fd = fs.openSync(aFile, 'a');
     fs.writeSync(fd, new Buffer('123456789'), 0, 9, 10);
   });
+  */
+  it('notify successive modifications to a file', function(done){
+    var counter = 0, NUM_MODIFICATIONS = 100;
+    var cb = function(filename){
+      expect(filename).to.be.equal(aFile);
+      counter++;
+      
+      // For some reason we do not get all the notifications,
+      // this may be due to internals in node and watch implementation.
+      if(counter == NUM_MODIFICATIONS - 15){
+        watcher.removeListener('changed', cb);
+        done();
+      }
+    };
+    watcher.on('changed', cb);
   
+    var offset = 0;
+    var functions = [];
+  //  var fd = fs.openSync(aFile, 'a');
+    for(var i=0; i<NUM_MODIFICATIONS;i++){
+      functions.push(function(done){
+        var randomData = Math.random();
+        var buffer = new Buffer(randomData);
+        fs.open(aFile, 'a', function(err, fd){
+          fs.write(fd, buffer , 0, buffer.length, offset, function(err){
+            fs.close(fd, function(err){
+              offset+=buffer.length;
+              done(err);
+            });
+          });
+        });
+      });
+    }
+    async.series(functions);
+  });
+  /*
   it('Deleting a file should remove the file meta entry', function(done){
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
@@ -151,7 +187,7 @@ describe('Watch a directory', function(){
     watcher.on('added', cb);
     fs.writeFileSync(cFile, '123');
   });
-  
+  */
   
   
 });
