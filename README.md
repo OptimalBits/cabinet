@@ -137,9 +137,10 @@ To avoid this error use ulimit, for example to allow 4096 open files:
 
     ulimit -n 4096
 
+  
 
+  
 ## Reference
-
     cabinet(root, [options, virtuals])
 
 __Arguments__
@@ -154,6 +155,7 @@ __Arguments__
 Most options are directly inherited from *connect's* options. Besides those we have the options related
 to the provided filters:
 
+- `ignore`   Specifies an array of files or directories to ignore, supports fnmatch syntax.
 - `cache`    Enables caching. Accepts an object with the parameters:  maxSize (per object in bytes) and maxObjects.
 - `maxAge`   Browser cache maxAge in milliseconds. defaults to 0
 - `hidden`   Allow transfer of hidden files. defaults to false
