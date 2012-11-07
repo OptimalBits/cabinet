@@ -10,9 +10,7 @@ The code is based on the original work by TJ Holowaychuck, but with several impr
 - Built-in in-memory cache mechanism for very fast file serve.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
 - Supports automatic compilation of typescript, coffeescript, less css, and stylus.
-- Automatic typescript compilation.
-- Automatic coffee script compilation.
-- Automatic compilation of less css and stylus files.
+- Automatic concatenation of typescript and AMD javascript into optimized single files.
 - Automatic javascript uglification & minification (using uglifyJS)
 - On the fly gzip of text files (js, css, html, templates, etc).
 - Support for virtual files, for example HTML5 application cache manifest.
