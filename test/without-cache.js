@@ -126,7 +126,6 @@ describe('File Cabinet Without Cache', function(){
     });
   })
   
-  /*
   describe('when no "directory" listeners are present', function(){
     it('should respond with a redirect', function(done){
       var app = http.createServer(function(req, res){
@@ -143,7 +142,6 @@ describe('File Cabinet Without Cache', function(){
         .end(done);
     })
   })
-  */
   
   describe('when no "error" listeners are present', function(){
       it('should respond to errors directly', function(done){
@@ -293,7 +291,6 @@ describe('Cabinet(dir, options)', function(){
       .end(done);
     })
 
-    /*
     it('should support Infinity', function(done){
       var app = http.createServer(function(req, res){
         send(req, 'test/fixtures/name.txt')
@@ -306,7 +303,6 @@ describe('Cabinet(dir, options)', function(){
       .expect('Cache-Control', 'public, max-age=31536000')
       .end(done);
     })
-    */
   })
 
   describe('index', function(){
@@ -353,16 +349,6 @@ describe('Cabinet(dir, options)', function(){
 
         request(app)
         .get('/pets/../../send.js')
-        .expect('Forbidden')
-        .end(done);
-      })
-    })
-
-    describe('when missing', function(){
-      it('should consider .. malicious', function(done){
-        request(app)
-        .get('/../send.js')
-        .expect(403)
         .expect('Forbidden')
         .end(done);
       })
