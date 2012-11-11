@@ -8,10 +8,13 @@ Works as a drop-in replacement for connect's static module (also works on expres
 The code is based on the original work by TJ Holowaychuck, but with several improvements and additions:
 
 - Built-in in-memory cache mechanism for very fast file serve.
+- Built-in ETAG caching for super fast 304 responses.
 - Cache always fresh by relying on nodejs file watch mechanism (no need to restart the server after updating files).
 - Supports automatic compilation of typescript, coffeescript, less css, and stylus.
+- Typescript dependency watcher: generates new ETAGs if any dependency changes.
 - Automatic concatenation of typescript and AMD javascript into optimized single files.
-- Automatic javascript uglification & minification (using uglifyJS)
+- Automatic javascript uglification & minification (using uglifyJS).
+- Automatic minimization of CSS and LESS CSS files.
 - On the fly gzip of text files (js, css, html, templates, etc).
 - Support for virtual files, for example HTML5 application cache manifest.
 
