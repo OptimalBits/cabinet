@@ -39,6 +39,10 @@ Example for using within an express application:
       app.use(cabinet(__dirname + '/static', {
         ignore: ['.git', '*.txt', 'node_modules'],
         coffee:true,
+        typescript: {
+          module: 'amd',
+          concatenate: false
+        },
         gzip:true,
         // Set LESS CSS options
         less:{
@@ -141,8 +145,13 @@ To avoid this error use ulimit, for example to allow 4096 open files:
     ulimit -n 4096
 
   
+## Typescript
 
-  
+Cabinet support on-the-fly compilation and optimization of typescript source files. The file watcher will listen for changes in the source files and their dependencies, therefore always delivering 
+the latest code. Compilation is expensive, so in a production server the cache should be enabled
+for optimal performance.
+
+
 ## Reference
     cabinet(root, [options, virtuals])
 
@@ -167,7 +176,12 @@ to the provided filters:
 - `minjs`    Enables UglifyJS javascript minification.
 - `less`     Enables LESS CSS compilation. Accepts an object with options to the less compilation, as for example *paths*, which specifies paths where to find included files.
 - `coffee`   Enables coffee script compilation of .coffee files.
-
+- `typescript` Enables typescript compilation of .ts files. Accepted parameters are:
+    - target , target version of the produced javascript (ES3 (default) or ES5)
+    - module, module system to use for the generated javascript (commonjs or amd (default))
+    - concatenate, boolean describing if the compiled code should be concatenated with its dependencies or not (default true)
+    - keepComments, boolean describing if the compiled code should keep comments (default false)
+ 
 
 ##Roadmap
 
