@@ -34,6 +34,6 @@
 	  "lightnode":"*"
   },
   "scripts" : {
-	  "test" : "mocha --reporter spec --bail"
+	  "test" : "mocha --reporter spec --bail --globals requirejsVars"
   }
 }
