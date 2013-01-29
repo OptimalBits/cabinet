@@ -20,7 +20,7 @@
     "typescript": "*",
     "node-uuid":"*",
     "minimatch":"*",
-    "requirejs":"2.1.1",
+    "requirejs":"*",
     "winston":">=0.6.2"
   },
   "devDependencies": {
