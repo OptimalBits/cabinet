@@ -277,20 +277,22 @@ describe('File Cabinet Without Cache', function(){
             request(app)
             .get('/nums')
             .set('Range', 'asdf')
-            .expect('123456789', done);
+            .expect(200, done);
         })
       })
+    
 })
 
 describe('Cabinet(dir, options)', function(){
   describe('maxAge', function(){
+    
     it('should default to 0', function(done){
       request(app)
       .get('/name.txt')
       .expect('Cache-Control', 'public, max-age=0')
       .end(done);
     })
-
+    
     it('should support Infinity', function(done){
       var app = http.createServer(function(req, res){
         send(req, 'test/fixtures/name.txt')

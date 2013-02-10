@@ -303,7 +303,7 @@ describe('File Cabinet With Cache', function(){
             request(app)
             .get('/nums')
             .set('Range', 'asdf')
-            .expect('123456789', done);
+            .expect(200, done);
         })
       })
 })
