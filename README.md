@@ -38,6 +38,7 @@ Example for using within an express application:
       app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
       app.use(cabinet(__dirname + '/static', {
         ignore: ['.git', '*.txt', 'node_modules'],
+        files: {'index.html': 'static/index.html' },
         coffee:true,
         typescript: {
           module: 'amd',
@@ -168,6 +169,7 @@ Most options are directly inherited from *connect's* options. Besides those we h
 to the provided filters:
 
 - `ignore`   Specifies an array of files or directories to ignore, supports fnmatch syntax.
+- `files`   Specifies an object mapping file paths to actual files. Useful to specify standalone files instead of whole directories.
 - `cache`    Enables caching. Accepts an object with the parameters:  maxSize (per object in bytes) and maxObjects.
 - `maxAge`   Browser cache maxAge in milliseconds. defaults to 0
 - `hidden`   Allow transfer of hidden files. defaults to false
