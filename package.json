@@ -21,7 +21,8 @@
     "node-uuid":"*",
     "minimatch":"*",
     "requirejs":"*",
-    "winston":">=0.6.2"
+    "winston":">=0.6.2",
+    "when":"*"
   },
   "devDependencies": {
     "mocha": "*",
