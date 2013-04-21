@@ -3,15 +3,14 @@ var cabinet = require('..'),
     Watcher = require('../lib/watcher').Watcher,
          fs = require('fs'),
        path = require('path'),
-      async = require('async');
+      async = require('async'),
+      path = require('path');
 
 var root = __dirname;
 var aFile = path.join(root,'a.txt');
 var bDir = path.join(root, 'bdir');
 var bFile = path.join(bDir, 'b.txt');
 var cFile = path.join(root, 'c.txt');
-
-console.log(root);
 
 var watcher;
 
@@ -33,14 +32,12 @@ try{
 }catch(e){};
 
   watcher = new Watcher(root);
-  watcher.on('initialized', function(){
-    done();
-  })
+  watcher.on('initialized', done);
 })
 
 describe('Watch a directory', function(){
   
-  it('A created file should be notified', function(done){  
+  it('A created file should be notified', function(done){
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
       watcher.removeListener('added', cb);
@@ -48,9 +45,10 @@ describe('Watch a directory', function(){
     };
     
     watcher.on('added', cb);
+    
     fs.writeFileSync(aFile, '123');
   });
-  /*
+  
   it('A modified file should be notified', function(done){
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
@@ -74,7 +72,7 @@ describe('Watch a directory', function(){
     var fd = fs.openSync(aFile, 'a');
     fs.writeSync(fd, new Buffer('123456789'), 0, 9, 10);
   });
-  */
+  
   it('notify successive modifications to a file', function(done){
     var counter = 0, NUM_MODIFICATIONS = 100;
     var cb = function(filename){
@@ -83,7 +81,7 @@ describe('Watch a directory', function(){
       
       // For some reason we do not get all the notifications,
       // this may be due to internals in node and watch implementation.
-      if(counter == NUM_MODIFICATIONS - 15){
+      if(counter == NUM_MODIFICATIONS - 20){
         watcher.removeListener('changed', cb);
         done();
       }
