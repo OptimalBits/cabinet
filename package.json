@@ -2,10 +2,14 @@
   "author": "Manuel Astudillo <manuel@optimalbits.com> (http://optimalbits.com)",
   "name": "cabinet",
   "description": "A fast static file server loaded with useful features",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OptimalBits/cabinet.git"
   },
   "dependencies": {
     "fresh": "*",
