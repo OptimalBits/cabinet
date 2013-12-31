@@ -35,9 +35,9 @@ try{
   watcher.on('initialized', done);
 })
 
-describe('Watch a directory', function(){
+describe.skip('Watch a directory', function(){
   
-  it.skip('A created file should be notified', function(done){
+  it('A created file should be notified', function(done){
     var cb = function(filename){
       expect(filename).to.be.equal(aFile);
       watcher.removeListener('added', cb);
