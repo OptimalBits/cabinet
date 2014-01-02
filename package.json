@@ -13,20 +13,21 @@
   },
   "dependencies": {
     "fresh": "*",
-	  "underscore" : "*",
-    "async" : "*",
-	  "range-parser" : "*",
+    "underscore": "*",
+    "async": "*",
+    "range-parser": "*",
     "less": ">=1.2.0",
-	  "mime": ">= 0.0.1",
+    "mime": ">= 0.0.1",
     "uglify-js": "1.3.4",
     "coffee-script": "*",
     "stylus": "*",
     "typescript": "*",
-    "node-uuid":"*",
-    "minimatch":"*",
-    "requirejs":"*",
-    "winston":">=0.6.2",
-    "when":"*"
+    "node-uuid": "*",
+    "minimatch": "*",
+    "requirejs": "*",
+    "winston": ">=0.6.2",
+    "when": "*",
+    "posix": "~1.0.3"
   },
   "devDependencies": {
     "mocha": "*",
@@ -35,10 +36,10 @@
     "supertest": "0.0.1",
     "send": "*",
     "connect": "2.x",
-	  "node-static":"*",
-	  "lightnode":"*"
+    "node-static": "*",
+    "lightnode": "*"
   },
-  "scripts" : {
-	  "test" : "mocha --reporter spec --bail --globals requirejsVars"
+  "scripts": {
+    "test": "mocha --reporter spec --bail --globals requirejsVars"
   }
 }
