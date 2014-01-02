@@ -1,6 +1,4 @@
 var cabinet = require('..'),
-    send = require('send'),
-    http = require('http'),
     connect = require('connect'),
     request = require('supertest'),
     expect = require('expect.js');
