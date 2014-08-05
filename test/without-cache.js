@@ -138,7 +138,7 @@ describe('File Cabinet Without Cache', function(){
         .get('/pets')
         .expect(301)
         .expect('Location', '/pets/')
-        .expect('Redirecting to /pets/')
+        .expect('Redirecting to <a href="/pets/">/pets/</a>\n')
         .end(done);
     })
   })
