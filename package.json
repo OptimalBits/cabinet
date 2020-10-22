@@ -26,7 +26,7 @@
     "stylus": "^0.47.3",
     "typescript": "^1.0.1",
     "uglify-js": "1.3.4",
-    "winston": "^0.7.3"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "connect": "2.x",
